@@ -1,14 +1,21 @@
 package com.example.prototipo;
 
+import com.example.prototipo.memento.Memento;
+
 /**
  * 
  * @author Juan David, Satiago Restrepo, Stiven Alvarez
  *
  */
-public class Auto implements Item {
-	private int id;
+public class Auto {
+	private int id_car;
 	private String placa;
 	private String propietario;
+
+	private String tipo;
+	private double deuda;
+	private double hora_entrada;
+	private double hora_salida;
 
 	/**
 	 * 
@@ -19,15 +26,20 @@ public class Auto implements Item {
 	 * @param propietario
 	 * @param placa
 	 */
+
 	public Auto(String propietario, String placa) {
 		this.placa = placa;
 		this.propietario = propietario;
 	}
 
-	public Auto(int id, String propietario, String placa) {
-		this.id = id;
+	public Auto(int id_car, String propietario, String placa) {
+		this.id_car = id_car;
 		this.placa = placa;
 		this.propietario = propietario;
+	}
+
+	public Auto() {
+
 	}
 
 	/**
@@ -36,17 +48,17 @@ public class Auto implements Item {
 	 * 
 	 * @return
 	 */
-	public int getId() {
-		return id;
+	public int getId_car() {
+		return id_car;
 	}
 
 	/**
 	 * El metodo set se encarga de darle un valor al objeto ID
 	 * 
-	 * @param id
+	 * @param id_car
 	 */
-	public void setId(int id) {
-		this.id = id;
+	public void setId_car(int id_car) {
+		this.id_car = id_car;
 	}
 
 	/**
@@ -87,21 +99,15 @@ public class Auto implements Item {
 		this.propietario = propietario;
 	}
 
-	/**
-	 * Se utiliza para convertir a String
-	 */
-	@Override
-	public String toString() {
-		return "Auto{" + " ID = '" + id + '\'' + ", propietario = '" + propietario + '\'' + " placa = '" + placa + '\''
-				+ "} \n";
+	public Memento saveToMemento() {
+		return new Memento(id_car, propietario, placa);
 	}
 
 	/**
-	 * Este metodo funciona para clonar el auto y darle los atributos de la
-	 * clonacion, ID, PROPIETARIO, PLACA
+	 * @param memento
 	 */
-	@Override
-	public Auto cloneAuto() {
-		return new Auto(this.id, this.propietario, this.placa);
+	public void restoreStateFromMemento(Memento memento) {
+		this.propietario = memento.getPropietario();
+		this.placa = memento.getPlaca();
 	}
 }

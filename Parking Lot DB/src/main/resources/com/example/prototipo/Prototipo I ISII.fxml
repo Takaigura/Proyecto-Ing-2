@@ -9,10 +9,11 @@
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="359.0" prefWidth="538.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prototipo.HelloController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="359.0" prefWidth="620.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prototipo.HelloController">
     <children>
-        <TextField fx:id="txtf_propietario" layoutX="58.0" layoutY="51.0" style="-fx-background-color: white;">
+        <TextField fx:id="txtf_propietario" layoutX="23.0" layoutY="51.0" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: white;">
          <effect>
             <Lighting bumpInput="$null">
                <light>
@@ -20,7 +21,7 @@
                </light>
             </Lighting>
          </effect></TextField>
-        <TextField fx:id="txtf_placa" layoutX="218.0" layoutY="51.0" style="-fx-background-color: white;">
+        <TextField fx:id="txtf_placa" layoutX="171.0" layoutY="51.0" style="-fx-background-color: white;">
          <effect>
             <Lighting>
                <bumpInput>
@@ -31,17 +32,35 @@
                </light>
             </Lighting>
          </effect></TextField>
-        <TableView fx:id="tabla_autos" editable="true" layoutX="57.0" layoutY="134.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: gray; -fx-border-color: black;">
+        <TableView fx:id="tabla_autos" editable="true" layoutX="21.0" layoutY="134.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: gray; -fx-border-color: black;">
             <columns>
             <TableColumn fx:id="col_IdCar" prefWidth="52.000003814697266" text="ID" />
                 <TableColumn fx:id="col_Propietario" prefWidth="142.40000915527344" text="Propietario" />
                 <TableColumn fx:id="col_Placa" minWidth="64.00006484985352" prefWidth="102.39996337890625" text="Placa" />
             </columns>
         </TableView>
-        <Label layoutX="58.0" layoutY="34.0" text="Ingrese Propietario:" />
-        <Label layoutX="218.0" layoutY="34.0" text="Ingrese Placa:" />
-        <Button fx:id="bton_registrar" layoutX="398.0" layoutY="69.0" mnemonicParsing="false" onAction="#BotonRegistrar" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: blue;" text="Registrar" textFill="WHITE" />
-        <Button fx:id="bton_modificar" layoutX="398.0" layoutY="188.0" mnemonicParsing="false" onAction="#BotonModificar" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: blue;" text="Modificar" textFill="WHITE" />
+        <Label layoutX="21.0" layoutY="34.0" text="Ingrese Propietario:" />
+        <Label layoutX="171.0" layoutY="34.0" text="Ingrese Placa:" />
+        <Button fx:id="bton_registrar" layoutX="398.0" layoutY="134.0" mnemonicParsing="false" onAction="#BotonRegistrar" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: green;" text="Registrar" textFill="WHITE" />
+        <Button fx:id="bton_modificar" layoutX="398.0" layoutY="211.0" mnemonicParsing="false" onAction="#BotonModificar" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: orange;" text="Modificar" />
         <Button fx:id="bton_eliminar" layoutX="398.0" layoutY="288.0" mnemonicParsing="false" onAction="#BotonEliminar" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: red;" text="Eliminar" />
+      <Label layoutX="352.0" layoutY="34.0" text="Recuperar del historial:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtf_indice" layoutX="352.0" layoutY="51.0" promptText="Digite numero de indice " style="-fx-background-color: white;">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </TextField>
+      <Button fx:id="bton_recuperar" layoutX="514.0" layoutY="51.0" mnemonicParsing="false" onAction="#BotonRecuperar" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: blue;" text="Recuperar" textFill="WHITE" />
     </children>
 </Pane>

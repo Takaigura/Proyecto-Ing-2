@@ -6,4 +6,8 @@ module com.example.prototipo {
 
     opens com.example.prototipo to javafx.fxml;
     exports com.example.prototipo;
+    exports com.example.prototipo.dao;
+    opens com.example.prototipo.dao to javafx.fxml;
+    exports com.example.prototipo.memento;
+    opens com.example.prototipo.memento to javafx.fxml;
 }
