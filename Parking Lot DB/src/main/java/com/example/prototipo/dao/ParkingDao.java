@@ -1,9 +1,10 @@
 package com.example.prototipo.dao;
 
-import com.example.prototipo.Auto;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
+
+import com.example.prototipo.memento.Auto;
 
 public interface ParkingDao {
     public void agregarAutosBD(Auto nuevo_auto);

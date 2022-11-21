@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
+import com.example.prototipo.memento.Auto;
+
 public class MysqlConnection {
 
 	public static Connection ConnectDb() {

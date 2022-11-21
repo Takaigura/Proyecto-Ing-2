@@ -1,13 +1,11 @@
 package com.example.prototipo.dao;
 
-/**
- * Esta es toda la coneccion a la base de datos Mysql
- */
-import com.example.prototipo.Auto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+
+import com.example.prototipo.memento.Auto;
 
 public class MysqlConnection {
 	private static Connection conn = null;

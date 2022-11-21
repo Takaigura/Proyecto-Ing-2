@@ -7,6 +7,7 @@ package com.example.prototipo;
  */
 import com.example.prototipo.dao.MysqlConnection;
 import com.example.prototipo.dao.ParkingDaoImplementation;
+import com.example.prototipo.memento.Auto;
 import com.example.prototipo.memento.CareTaker;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import com.example.prototipo.memento.Auto;
+import javafx.collections.ObservableList;
 
 import java.net.URL;
 import java.sql.Connection;

@@ -1,6 +1,5 @@
 package com.example.prototipo.memento;
 
-import com.example.prototipo.Auto;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;

@@ -1,10 +1,10 @@
 package com.example.prototipo.dao;
 
-import com.example.prototipo.Auto;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import com.example.prototipo.memento.Auto;
 
 public class ParkingDaoImplementation implements ParkingDao{
     Connection conn = MysqlConnection.ConnectDb();
