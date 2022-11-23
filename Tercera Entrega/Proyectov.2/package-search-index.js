@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.prototipo","l":"com.example.prototipo"},{"m":"com.example.prototipo","l":"com.example.prototipo.dao"},{"m":"com.example.prototipo","l":"com.example.prototipo.decorator"},{"m":"com.example.prototipo","l":"com.example.prototipo.memento"}];updateSearchResults();

@@ -1,0 +1,5 @@
+module:com.example.prototipo
+com.example.prototipo
+com.example.prototipo.dao
+com.example.prototipo.decorator
+com.example.prototipo.memento
