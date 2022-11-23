@@ -1,5 +1,9 @@
 package com.example.prototipo.memento;
-
+/**
+ * Este es el memento como tal
+ * @author Juan David, Satiago Restrepo, Stiven Alvarez
+ *
+ */
 public class Memento {
     private int id_car;
     private String placa;

@@ -1,19 +1,19 @@
-package com.example.prototipo;
-
-import com.example.prototipo.decorator.Vehiculo;
-import com.example.prototipo.memento.Memento;
+package com.example.prototipo.memento;
 
 /**
  * 
  * @author Juan David, Satiago Restrepo, Stiven Alvarez
  *
  */
-public class Auto extends Vehiculo {
+public class Auto {
 	private int id_car;
 	private String placa;
 	private String propietario;
 
-	public String combustible;
+	private String tipo;
+	private double deuda;
+	private double hora_entrada;
+	private double hora_salida;
 
 	/**
 	 * 
@@ -30,14 +30,15 @@ public class Auto extends Vehiculo {
 		this.propietario = propietario;
 	}
 
-	public Auto(int id_car, String propietario, String placa, String combustible) {
+	public Auto(int id_car, String propietario, String placa) {
 		this.id_car = id_car;
 		this.placa = placa;
 		this.propietario = propietario;
-		this.combustible = combustible;
 	}
 
-	public Auto() {	}
+	public Auto() {
+
+	}
 
 	/**
 	 * El metodo get se encarga de mostrar un valor a una propiedad o atributo del
@@ -78,12 +79,26 @@ public class Auto extends Vehiculo {
 		return this.placa;
 	}
 
-	public String getCombustible() {
-		return combustible;
+	/**
+	 * El metodo set se encarga de darle un valor al objeto Placa
+	 * 
+	 * @param placa
+	 */
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+
+	/**
+	 * El metodo set se encarga de darle un valor al objeto Propietario
+	 * 
+	 * @param propietario
+	 */
+	public void setPropietario(String propietario) {
+		this.propietario = propietario;
 	}
 
 	public Memento saveToMemento() {
-		return new Memento(id_car, propietario, placa, combustible);
+		return new Memento(id_car, propietario, placa, tipo);
 	}
 
 	/**
@@ -93,6 +108,4 @@ public class Auto extends Vehiculo {
 		this.propietario = memento.getPropietario();
 		this.placa = memento.getPlaca();
 	}
-	@Override
-	public void type() {}
 }
