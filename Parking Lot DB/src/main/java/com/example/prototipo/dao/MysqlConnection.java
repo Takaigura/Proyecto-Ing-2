@@ -1,11 +1,13 @@
 package com.example.prototipo.dao;
 
+/**
+ * Esta es toda la coneccion a la base de datos Mysql
+ */
+import com.example.prototipo.Auto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-
-import com.example.prototipo.memento.Auto;
 
 public class MysqlConnection {
 	private static Connection conn = null;
@@ -31,7 +33,8 @@ public class MysqlConnection {
 			PreparedStatement ps = conn.prepareStatement("select * from cars");
 			ResultSet respuesta = ps.executeQuery();
 			while (respuesta.next()) {
-				list.add(new Auto(respuesta.getInt(1), respuesta.getString(2), respuesta.getString(3)));
+				list.add(new Auto(respuesta.getInt(1), respuesta.getString(2), respuesta.getString(3),
+					respuesta.getString(4)));
 			}
 		} catch (Exception e) {
 		}

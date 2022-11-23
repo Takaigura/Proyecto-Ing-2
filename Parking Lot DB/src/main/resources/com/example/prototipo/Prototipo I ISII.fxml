@@ -2,16 +2,18 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="359.0" prefWidth="620.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prototipo.HelloController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="661.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prototipo.HelloController">
     <children>
         <TextField fx:id="txtf_propietario" layoutX="23.0" layoutY="51.0" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: white;">
          <effect>
@@ -32,18 +34,19 @@
                </light>
             </Lighting>
          </effect></TextField>
-        <TableView fx:id="tabla_autos" editable="true" layoutX="21.0" layoutY="134.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: gray; -fx-border-color: black;">
+        <TableView fx:id="tabla_autos" editable="true" layoutX="21.0" layoutY="188.0" prefHeight="200.0" prefWidth="392.0" style="-fx-background-color: gray; -fx-border-color: black;">
             <columns>
             <TableColumn fx:id="col_IdCar" prefWidth="52.000003814697266" text="ID" />
                 <TableColumn fx:id="col_Propietario" prefWidth="142.40000915527344" text="Propietario" />
                 <TableColumn fx:id="col_Placa" minWidth="64.00006484985352" prefWidth="102.39996337890625" text="Placa" />
+            <TableColumn fx:id="col_combustible" prefWidth="91.19998168945312" text="Combustible" />
             </columns>
         </TableView>
         <Label layoutX="21.0" layoutY="34.0" text="Ingrese Propietario:" />
         <Label layoutX="171.0" layoutY="34.0" text="Ingrese Placa:" />
-        <Button fx:id="bton_registrar" layoutX="398.0" layoutY="134.0" mnemonicParsing="false" onAction="#BotonRegistrar" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: green;" text="Registrar" textFill="WHITE" />
-        <Button fx:id="bton_modificar" layoutX="398.0" layoutY="211.0" mnemonicParsing="false" onAction="#BotonModificar" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: orange;" text="Modificar" />
-        <Button fx:id="bton_eliminar" layoutX="398.0" layoutY="288.0" mnemonicParsing="false" onAction="#BotonEliminar" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: red;" text="Eliminar" />
+        <Button fx:id="bton_registrar" layoutX="470.0" layoutY="188.0" mnemonicParsing="false" onAction="#BotonRegistrar" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: green;" text="Registrar" textFill="WHITE" />
+        <Button fx:id="bton_modificar" layoutX="470.0" layoutY="265.0" mnemonicParsing="false" onAction="#BotonModificar" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: orange;" text="Modificar" />
+        <Button fx:id="bton_eliminar" layoutX="470.0" layoutY="342.0" mnemonicParsing="false" onAction="#BotonEliminar" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: red;" text="Eliminar" />
       <Label layoutX="352.0" layoutY="34.0" text="Recuperar del historial:">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -62,5 +65,24 @@
          </effect>
       </TextField>
       <Button fx:id="bton_recuperar" layoutX="514.0" layoutY="51.0" mnemonicParsing="false" onAction="#BotonRecuperar" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: blue;" text="Recuperar" textFill="WHITE" />
+      <Label layoutX="23.0" layoutY="87.0" text="Combustible:" />
+      <RadioButton fx:id="rboton_electrico" layoutX="115.0" layoutY="87.0" mnemonicParsing="false" onAction="#SeleccionarCombustible" text="Electrico">
+         <toggleGroup>
+            <ToggleGroup fx:id="combustibles" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rboton_gasolina" layoutX="115.0" layoutY="117.0" mnemonicParsing="false" onAction="#SeleccionarCombustible" text="Gasolina" toggleGroup="$combustibles" />
+      <TextField fx:id="txtf_combustible" editable="false" layoutX="23.0" layoutY="113.0" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: white;">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </TextField>
     </children>
 </Pane>

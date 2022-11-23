@@ -1,5 +1,6 @@
 package com.example.prototipo.memento;
 
+import com.example.prototipo.Auto;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
@@ -26,7 +27,8 @@ public class CareTaker {
                 mementoList) {
             imprimir.append("Indice = ").append(mementoList.indexOf(au)).append(" Auto{").append(" ID = '")
                     .append(au.getId_car()).append('\'').append(", Propietario = '").append(au.getPropietario())
-                    .append('\'').append(" Placa = '").append(au.getPlaca()).append('\'').append("} \n");
+                    .append('\'').append(" Placa = '").append(au.getPlaca()).append('\'').append(" Combustible = '")
+                    .append(au.getCombustible()).append("'} \n");
         }
         return imprimir.toString();
     }

@@ -10,4 +10,6 @@ module com.example.prototipo {
     opens com.example.prototipo.dao to javafx.fxml;
     exports com.example.prototipo.memento;
     opens com.example.prototipo.memento to javafx.fxml;
+    exports com.example.prototipo.decorator;
+    opens com.example.prototipo.decorator to javafx.fxml;
 }

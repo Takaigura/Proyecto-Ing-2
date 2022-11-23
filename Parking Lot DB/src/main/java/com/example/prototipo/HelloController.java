@@ -7,7 +7,8 @@ package com.example.prototipo;
  */
 import com.example.prototipo.dao.MysqlConnection;
 import com.example.prototipo.dao.ParkingDaoImplementation;
-import com.example.prototipo.memento.Auto;
+import com.example.prototipo.decorator.Electrico;
+import com.example.prototipo.decorator.Gasolina;
 import com.example.prototipo.memento.CareTaker;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,8 +16,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import com.example.prototipo.memento.Auto;
-import javafx.collections.ObservableList;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -40,11 +39,19 @@ public class HelloController implements Initializable {
 	@FXML
 	private Button bton_recuperar;
 	@FXML
+	private ToggleGroup combustibles;
+	@FXML
+	private RadioButton rboton_electrico;
+	@FXML
+	private RadioButton rboton_gasolina;
+	@FXML
 	private TextField txtf_propietario;
 	@FXML
 	private TextField txtf_placa;
 	@FXML
 	private TextField txtf_indice;
+	@FXML
+	private TextField txtf_combustible;
 	@FXML
 	private TableColumn<Auto, Integer> col_IdCar;
 	@FXML
@@ -53,6 +60,8 @@ public class HelloController implements Initializable {
 	private TableColumn<Auto, String> col_Placa;
 	@FXML
 	private TableColumn<Auto, String> col_Propietario;
+	@FXML
+	private TableColumn<Auto, String> col_combustible;
 	@FXML
 	private ObservableList<Auto> autos_list;
 
@@ -74,11 +83,15 @@ public class HelloController implements Initializable {
 	private void BotonRegistrar(ActionEvent event) {
 
 		//Primero se verifica si los campos estan vacios:
-		if (txtf_propietario.getText().isEmpty() || txtf_placa.getText().isEmpty()) {
-			//Alerta de cajas de texto vacias:
-			alertas(1, null);
+		if (txtf_propietario.getText().isEmpty() || txtf_placa.getText().isEmpty() || !rboton_gasolina.isSelected() || !rboton_electrico.isSelected()) {
+			if (!rboton_electrico.isSelected()) {
+				//Alerta de cajas de texto vacias:
+				alertas(1, null);
+			}
 		} else {
+
 			reutilizado = new Auto(txtf_propietario.getText().trim(), txtf_placa.getText().trim());
+			AjustarCombustible(reutilizado);
 			ejecutador_db.agregarAutosBD(reutilizado);
 
 			// Añade los registros a la observable list desde la BD y esta lista nueva/refrescada a la tabla:
@@ -113,11 +126,14 @@ public class HelloController implements Initializable {
 		if (seleccionado == null) {
 			//Alerta de seleccion no realizada:
 			alertas(2, null);
-		} else if (txtf_propietario.getText().isEmpty() || txtf_placa.getText().isEmpty()) {
-			//Alerta de cajas de texto vacias:
-			alertas(1, null);
+		} else if (txtf_propietario.getText().isEmpty() || txtf_placa.getText().isEmpty() || !rboton_gasolina.isSelected()) {
+			if (!rboton_electrico.isSelected()) {
+				//Alerta de cajas de texto vacias:
+				alertas(1, null);
+			}
 		} else {
 			reutilizado = new Auto(txtf_propietario.getText().trim(), txtf_placa.getText().trim());
+			AjustarCombustible(reutilizado);
 			reutilizado = ejecutador_db.modificarAutoBD(seleccionado, reutilizado);
 
 			// Añade los registros a la observable list desde la BD y esta lista nueva/refrescada a la tabla:
@@ -183,7 +199,7 @@ public class HelloController implements Initializable {
 			case 1:
 				alerta.setTitle("Datos Incompletos");
 				alerta.setHeaderText("Casillas de texto en blanco");
-				alerta.setContentText("Introduzca datos en todas las casillas");
+				alerta.setContentText("Introduzca datos las casillas (Propietario y Placa). \nTambien seleccione un tipo de combustible");
 				alerta.showAndWait();
 			break;
 			case 2:
@@ -196,14 +212,16 @@ public class HelloController implements Initializable {
 				alerta.setTitle("Registro Completado");
 				alerta.setHeaderText("Sus datos han sido guardados correctamente");
 				alerta.setContentText("Propietario: " + auto.getPropietario() + System.lineSeparator()
-						+ "Placa del carro: " + auto.getPlaca());
+						+ "Placa del carro: " + auto.getPlaca() + System.lineSeparator() + "Combustible: "
+						+ auto.getCombustible());
 				alerta.showAndWait();
 			break;
 			case 4:
 				alerta.setTitle("Eliminacion Completada");
 				alerta.setHeaderText("El registro ha sido eliminado correctamente");
 				alerta.setContentText("Propietario: " + auto.getPropietario()  + System.lineSeparator()
-					+ "Placa del carro: " + auto.getPlaca());
+					+ "Placa del carro: " + auto.getPlaca() + System.lineSeparator() + "Combustible: "
+						+ auto.getCombustible());
 				alerta.showAndWait();
 			break;
 			case 5:
@@ -220,6 +238,25 @@ public class HelloController implements Initializable {
 				alerta.showAndWait();
 		}
 	}
+
+	@FXML
+	public void SeleccionarCombustible(ActionEvent event) {
+		if (rboton_gasolina.isSelected()){
+			txtf_combustible.setText("Gasolina");
+		} else if (rboton_electrico.isSelected()) {
+			txtf_combustible.setText("Electrico");
+		}
+	}
+
+	public void AjustarCombustible(Auto a){
+		if (rboton_gasolina.isSelected()){
+			Gasolina g = new Gasolina(a);
+			g.type();
+		} else if (rboton_electrico.isSelected()) {
+			Electrico e = new Electrico(a);
+			e.type();
+		}
+	}
 	/**
 	 * Este es el inicializador el cual funciona para crear la union entre el
 	 * programa y el controlador
@@ -231,6 +268,7 @@ public class HelloController implements Initializable {
 		this.col_IdCar.setCellValueFactory(new PropertyValueFactory<Auto, Integer>("Id_car"));
 		this.col_Placa.setCellValueFactory(new PropertyValueFactory<Auto, String>("Placa"));
 		this.col_Propietario.setCellValueFactory(new PropertyValueFactory<Auto, String>("Propietario"));
+		this.col_combustible.setCellValueFactory(new PropertyValueFactory<Auto, String>("Combustible"));
 
 		autos_list = MysqlConnection.getDataCars();
 		// Añade los autos que se encuentren en la BD a la lista de historial
