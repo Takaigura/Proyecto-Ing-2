@@ -83,11 +83,11 @@ public class HelloController implements Initializable {
 	private void BotonRegistrar(ActionEvent event) {
 
 		//Primero se verifica si los campos estan vacios:
-		if (txtf_propietario.getText().isEmpty() || txtf_placa.getText().isEmpty() || !rboton_gasolina.isSelected() || !rboton_electrico.isSelected()) {
-			if (!rboton_electrico.isSelected()) {
+		if (txtf_propietario.getText().isEmpty() || txtf_placa.getText().isEmpty()) {
 				//Alerta de cajas de texto vacias:
-				alertas(1, null);
-			}
+			alertas(1, null);
+		} else if (!rboton_electrico.isSelected() && !rboton_gasolina.isSelected()) {
+			alertas(1, null);
 		} else {
 
 			reutilizado = new Auto(txtf_propietario.getText().trim(), txtf_placa.getText().trim());
@@ -126,11 +126,11 @@ public class HelloController implements Initializable {
 		if (seleccionado == null) {
 			//Alerta de seleccion no realizada:
 			alertas(2, null);
-		} else if (txtf_propietario.getText().isEmpty() || txtf_placa.getText().isEmpty() || !rboton_gasolina.isSelected()) {
-			if (!rboton_electrico.isSelected()) {
-				//Alerta de cajas de texto vacias:
-				alertas(1, null);
-			}
+		} else if (txtf_propietario.getText().isEmpty() || txtf_placa.getText().isEmpty()) {
+			//Alerta de cajas de texto vacias:
+			alertas(1, null);
+		} else if (!rboton_electrico.isSelected() && !rboton_gasolina.isSelected()) {
+			alertas(1, null);
 		} else {
 			reutilizado = new Auto(txtf_propietario.getText().trim(), txtf_placa.getText().trim());
 			AjustarCombustible(reutilizado);
